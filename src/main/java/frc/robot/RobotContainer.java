@@ -6,7 +6,10 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Turret;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 
@@ -22,6 +25,7 @@ public class RobotContainer {
   public static final XboxController m_xboxController = new XboxController(Constants.OperatorConstants.OPERATOR_CONTROLLER);
   public static final Joystick m_joystickR = new Joystick(Constants.OperatorConstants.RIGHT_JOYSTICK);
   public static final Joystick m_joystickL = new Joystick(Constants.OperatorConstants.LEFT_JOYSTICK);
+  public static Turret turret = new Turret();
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
@@ -38,6 +42,13 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
+    new JoystickButton(m_joystickR, 1)
+      .onTrue(new InstantCommand(() -> {
+        turret.setYeetPower(1);
+      }))
+      .onFalse(new InstantCommand(() -> {
+        turret.setYeetPower(0);
+      }));
   }
 
   /**
