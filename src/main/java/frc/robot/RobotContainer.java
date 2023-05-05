@@ -4,14 +4,16 @@
 
 package frc.robot;
 
-import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Turret;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;;;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -26,8 +28,18 @@ public class RobotContainer {
   public static final Joystick m_joystickR = new Joystick(Constants.OperatorConstants.RIGHT_JOYSTICK);
   public static final Joystick m_joystickL = new Joystick(Constants.OperatorConstants.LEFT_JOYSTICK);
   public static Turret turret = new Turret();
+  public static final SendableChooser<String> drivePresetsChooser = new SendableChooser<>();
+  private static final ShuffleboardTab driveSettings = Shuffleboard.getTab("Drive Settings");
+
+  static {
+    drivePresetsChooser.addOption("Default", "default");
+    drivePresetsChooser.addOption("calvin", "goat");
+  }
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    driveSettings.add("Drive Presets", drivePresetsChooser)
+      .withWidget(BuiltInWidgets.kComboBoxChooser);
     // Configure the trigger bindings
     configureBindings();
   }

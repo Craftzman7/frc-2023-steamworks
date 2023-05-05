@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.DriveConfig;
+
 
 import java.util.Set;
 
@@ -18,10 +20,14 @@ public class DriveCommand implements Command {
 
     @Override
     public void execute() {
+        DriveConfig config = DriveConfig.getCurrent();
+
         final double forward = -RobotContainer.m_joystickL.getY();
         final double turn = RobotContainer.m_joystickR.getX();
+        final double speedSensitivity = config.getSpeedSensitivity();
+        final double turnSensitivity = config.getTurnSensitivity();
 
-        drivetrain.arcadeDrive(forward, turn);
+        drivetrain.arcadeDrive(forward * speedSensitivity, turn * turnSensitivity);
     }
 
     public void end(boolean interrupted) {
