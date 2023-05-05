@@ -9,7 +9,7 @@ public class DriveConfig {
 
     static {
         PRESETS.put(DEFAULT_PRESET_NAME, new DriveConfig(1, 1));
-        PRESETS.put("goat", new DriveConfig(.5, .5));
+        PRESETS.put("goat", new DriveConfig(1, 2.9));
     }
 
     /**
