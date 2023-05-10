@@ -25,6 +25,16 @@ public final class Constants {
     public static final int MOTOR_LEFT_2 = 0;
     public static final int MOTOR_RIGHT_1 = 0;
     public static final int MOTOR_RIGHT_2 = 0;
+
+    public static final int LEFT_ENCODER_PORT_A = 0;
+    public static final int LEFT_ENCODER_PORT_B = 0;
+    public static final int RIGHT_ENCODER_PORT_A = 0;
+    public static final int RIGHT_ENCODER_PORT_B = 0;
+
+    public static final double WHEEL_DIAMETER = 6 * 0.0254; // in meters
+    public static final double WHEEL_CIRCUMFERENCE = Math.PI * WHEEL_DIAMETER;
+
+    public static final int PULSES_PER_REVOLUTION = 4096;
   }
 
   public static class Turret {

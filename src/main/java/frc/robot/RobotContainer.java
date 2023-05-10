@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;;;
 
@@ -30,6 +31,7 @@ public class RobotContainer {
   public static Turret turret = new Turret();
   public static final SendableChooser<String> drivePresetsChooser = new SendableChooser<>();
   private static final ShuffleboardTab driveSettings = Shuffleboard.getTab("Drive Settings");
+  public static Field2d field = new Field2d();
 
   static {
     drivePresetsChooser.addOption("Default", "default");
