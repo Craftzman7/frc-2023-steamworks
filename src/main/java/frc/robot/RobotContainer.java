@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Turret;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -14,7 +15,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;;;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -24,11 +25,11 @@ import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;;;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriveTrain m_driveTrainSubsystem = new DriveTrain();
+  private final DriveTrain driveTrain = new DriveTrain();
   public static final XboxController m_xboxController = new XboxController(Constants.OperatorConstants.OPERATOR_CONTROLLER);
   public static final Joystick m_joystickR = new Joystick(Constants.OperatorConstants.RIGHT_JOYSTICK);
   public static final Joystick m_joystickL = new Joystick(Constants.OperatorConstants.LEFT_JOYSTICK);
-  public static Turret turret = new Turret();
+  // static Turret turret = new Turret();
   public static final SendableChooser<String> drivePresetsChooser = new SendableChooser<>();
   private static final ShuffleboardTab driveSettings = Shuffleboard.getTab("Drive Settings");
   public static Field2d field = new Field2d();
@@ -56,13 +57,14 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    new JoystickButton(m_joystickR, 1)
-      .onTrue(new InstantCommand(() -> {
-        turret.setYeetPower(1);
-      }))
-      .onFalse(new InstantCommand(() -> {
-        turret.setYeetPower(0);
-      }));
+    driveTrain.setDefaultCommand(new DriveCommand(driveTrain));
+    // new JoystickButton(m_joystickR, 1)
+    //   .onTrue(new InstantCommand(() -> {
+    //     turret.setYeetPower(1);
+    //   }))
+    //   .onFalse(new InstantCommand(() -> {
+    //     turret.setYeetPower(0);
+    //   }));
   }
 
   /**
